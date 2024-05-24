@@ -1,5 +1,4 @@
-const initialProducts = [
-  {
+const initialProducts = [{
     name: 'Laptop',
     quantity: 10,
     price: 800,
@@ -35,21 +34,33 @@ function clearProductForm() {
   document.getElementById('productCategory').value = '';
 }
 
-function addNewProduct(event) {
-  event.preventDefault();
+function addNewProduct(e) {
+  e.preventDefault()
 
-  const name = document.getElementById('productName').value ;
+  const name = document.getElementById('productName').value;
   const quantity = document.getElementById('productQuantity').value;
-  const price = document.getElementById('productPrice').value ;
-  const vendor = document.getElementById('productVendor').value ;
+  const price = document.getElementById('productPrice').value;
+  const vendor = document.getElementById('productVendor').value;
   const category = document.getElementById('productCategory').value;
   const productId = document.getElementById('productId').value;
 
   if (productId === '') {
-    initialProducts.push({ name, quantity, price, vendor, category });
+    initialProducts.push({
+      name,
+      quantity,
+      price,
+      vendor,
+      category
+    });
   } else {
     const index = parseInt(productId);
-    initialProducts[index] = { name, quantity, price, vendor, category };
+    initialProducts[index] = {
+      name,
+      quantity,
+      price,
+      vendor,
+      category
+    };
   }
 
   clearProductForm();
@@ -70,8 +81,8 @@ function renderProducts(products) {
       <td class="py-2 px-4 border-b text-center">${product.vendor}</td>
       <td class="py-2 px-4 border-b text-center">${product.category}</td>
       <td class="py-2 px-4 border-b text-center">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onclick="editProduct(${index})">Edit</button>
         <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" onclick="removeProduct(${index})">Remove</button>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onclick="editProduct(${index})">Edit</button>
       </td>
     `;
 
