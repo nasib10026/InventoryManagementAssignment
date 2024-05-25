@@ -35,7 +35,7 @@ function clearProductForm() {
 }
 
 function addNewProduct(e) {
-  e.preventDefault()
+  e.preventDefault();
 
   const name = document.getElementById('productName').value;
   const quantity = document.getElementById('productQuantity').value;
@@ -43,6 +43,9 @@ function addNewProduct(e) {
   const vendor = document.getElementById('productVendor').value;
   const category = document.getElementById('productCategory').value;
   const productId = document.getElementById('productId').value;
+  if(!checkValidity()){
+    return;
+  };
 
   if (productId === '') {
     initialProducts.push({
@@ -81,8 +84,8 @@ function renderProducts(products) {
       <td class="py-2 px-4 border-b text-center">${product.vendor}</td>
       <td class="py-2 px-4 border-b text-center">${product.category}</td>
       <td class="py-2 px-4 border-b text-center">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded" onclick="editProduct(${index})">Edit</button>
-        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" onclick="removeProduct(${index})">Remove</button>
+      <button class="bg-green-400 hover:bg-green-500 text-white font-semibold py-1 px-2 rounded" onclick="editProduct(${index})">Edit</button>
+        <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-1 px-2 rounded" onclick="removeProduct(${index})">Remove</button>
       </td>
     `;
 
@@ -91,9 +94,13 @@ function renderProducts(products) {
 }
 
 function removeProduct(index) {
-  initialProducts.splice(index, 1);
-  renderProducts(initialProducts);
+  const confirmDelete = confirm('Are you sure you want to delete this product?');
+  if (confirmDelete) {
+    initialProducts.splice(index, 1);
+    renderProducts(initialProducts);
+  }
 }
+
 
 function editProduct(index) {
   const product = initialProducts[index];
@@ -104,6 +111,18 @@ function editProduct(index) {
   document.getElementById('productVendor').value = product.vendor;
   document.getElementById('productCategory').value = product.category;
 }
+
+function checkValidity() {
+  const fields = ['productName', 'productQuantity', 'productPrice', 'productVendor', 'productCategory'];
+  for (const field of fields) {
+    if (document.getElementById(field).value.trim() === '') {
+      alert('Boxes Not filled');
+      return false;
+    }
+  }
+  return true;
+}
+
 
 // Initial render
 renderProducts(initialProducts);
