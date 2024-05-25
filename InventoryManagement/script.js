@@ -21,29 +21,32 @@ const initialProducts = [{
   },
 ];
 
-const submitButton = document.getElementById('submit');
+function getId(id) {
+  return document.getElementById(id);
+}
+
+const submitButton = getId('submit');
 submitButton.addEventListener('click', addNewProduct);
 
-
 function clearProductForm() {
-  document.getElementById('productId').value = '';
-  document.getElementById('productName').value = '';
-  document.getElementById('productQuantity').value = '';
-  document.getElementById('productPrice').value = '';
-  document.getElementById('productVendor').value = '';
-  document.getElementById('productCategory').value = '';
+  getId('productId').value = '';
+  getId('productName').value = '';
+  getId('productQuantity').value = '';
+  getId('productPrice').value = '';
+  getId('productVendor').value = '';
+  getId('productCategory').value = '';
 }
 
 function addNewProduct(e) {
   e.preventDefault();
 
-  const name = document.getElementById('productName').value;
-  const quantity = document.getElementById('productQuantity').value;
-  const price = document.getElementById('productPrice').value;
-  const vendor = document.getElementById('productVendor').value;
-  const category = document.getElementById('productCategory').value;
-  const productId = document.getElementById('productId').value;
-  if(!checkValidity()){
+  const name = getId('productName').value;
+  const quantity = getId('productQuantity').value;
+  const price = getId('productPrice').value;
+  const vendor = getId('productVendor').value;
+  const category = getId('productCategory').value;
+  const productId = getId('productId').value;
+  if (!checkValidity()) {
     return;
   };
 
@@ -71,7 +74,7 @@ function addNewProduct(e) {
 }
 
 function renderProducts(products) {
-  const tbody = document.getElementById('productTableBody');
+  const tbody = getId('productTableBody');
   tbody.innerHTML = ''; // Clear existing rows
 
   products.forEach((product, index) => {
@@ -104,18 +107,18 @@ function removeProduct(index) {
 
 function editProduct(index) {
   const product = initialProducts[index];
-  document.getElementById('productId').value = index;
-  document.getElementById('productName').value = product.name;
-  document.getElementById('productQuantity').value = product.quantity;
-  document.getElementById('productPrice').value = product.price;
-  document.getElementById('productVendor').value = product.vendor;
-  document.getElementById('productCategory').value = product.category;
+  getId('productId').value = index;
+  getId('productName').value = product.name;
+  getId('productQuantity').value = product.quantity;
+  getId('productPrice').value = product.price;
+  getId('productVendor').value = product.vendor;
+  getId('productCategory').value = product.category;
 }
 
 function checkValidity() {
   const fields = ['productName', 'productQuantity', 'productPrice', 'productVendor', 'productCategory'];
   for (const field of fields) {
-    if (document.getElementById(field).value.trim() === '') {
+    if (getId(field).value.trim() === '') {
       alert('Boxes Not filled');
       return false;
     }
