@@ -8,26 +8,26 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 p-6">
+<body class="bg-sky-100 p-6">
   <div class="container mx-auto">
-    <h1 class="text-3xl font-bold mb-6">Inventory Management System</h1>
+    <h1 class="text-5xl text- font-bold mb-14 text-center">Inventory Management System</h1>
 
     <!-- Form to add/edit product -->
     <form id="productForm" class="mb-6">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         <input type="hidden" id="productId">
-        <input type="text" id="productName" placeholder="Product Name" class="p-2 border border-gray-300 rounded">
-        <input type="number" id="productQuantity" placeholder="Quantity" class="p-2 border border-gray-300 rounded">
-        <input type="number" id="productPrice" placeholder="Price" class="p-2 border border-gray-300 rounded">
-        <input type="text" id="productVendor" placeholder="Vendor" class="p-2 border border-gray-300 rounded">
-        <input type="text" id="productCategory" placeholder="Category" class="p-2 border border-gray-300 rounded">
+        <input type="text" id="productName" placeholder="Product Name" class="p-2 border border-gray-300 rounded text-center">
+        <input type="number" id="productQuantity" placeholder="Quantity" class="p-2 border border-gray-300 rounded text-center">
+        <input type="number" id="productPrice" placeholder="Price" class="p-2 border border-gray-300 rounded text-center">
+        <input type="text" id="productVendor" placeholder="Vendor" class="p-2 border border-gray-300 rounded text-center">
+        <input type="text" id="productCategory" placeholder="Category" class="p-2 border border-gray-300 rounded text-center">
       </div>
       <button type="submit" id="submit" class="bg-blue-500 text-white p-2 rounded">Save Product</button>
     </form>
 
     <!-- Table to display products -->
     <div class="overflow-x-auto">
-      <table class="min-w-full bg-white">
+      <table class="min-w-full bg-orange-100">
         <thead>
           <tr>
             <th class="py-2 px-4 border-b text-center">Product Name</th>
